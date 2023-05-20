@@ -8,10 +8,10 @@ py_serial = serial.Serial(
 
 #파이썬에 입력
 while 1:
-    theta1 = input('rx ='); xn = float(theta1)
-    theta2 = input('ry ='); yn = float(theta2)
-    theta3 = input('rz ='); zn = float(theta3)
-    z = input('rz ='); zn = float(z)
+    theta1 = input('rx ='); xn = float(theta1) #roll
+    theta2 = input('ry ='); yn = float(theta2) #pitch
+    theta3 = input('z ='); zn = float(theta3)  #z-axis 
+    z = input('rz ='); zn = float(z)  #yaw 축(개발중)
 
     while 1:
 

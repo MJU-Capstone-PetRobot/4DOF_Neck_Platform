@@ -17,11 +17,11 @@ float L1_a, L2_a, L3_a;
 float bRp0[3], bRp1[3], bRp2[3], T[3];
 float z_set = 105;
 float angle, theta, phi;
-float phi0 = 25.84;
+float phi0 = 30;
 float d = 50.0;
 float e = 70.0;
-float z0 = 32.0;
-float k;
+float z0 = 26.0; //모터 좌표
+float k; //모터 좌표 반지름
 int angle_step;
 
 typedef enum _com_mode {
@@ -280,7 +280,7 @@ void loop() {
       int tmpcnt = 0;
       String tmpString = RCVdata;
       tmpString.trim();
-      Serial.print("command in rx, ry, rz, z  ");
+      Serial.print("command in rx, ry, z, rz  ");
       Serial.println(tmpString);
 
       while (tmpString.length() > 0) {
@@ -301,7 +301,9 @@ void loop() {
     }
 
     // 파이썬으로 부터 데이터 받음.
-
+    theta = CMDdataDEG[0]; //roll
+    phi = CMDdataDEG[1]; //pitch
+    z_set = CMDdataDEG[2]; //z-axis
     // 역기구학 계산
     create_l_vectors();                                                                // create the end-effector vectors
     L1_a = step_transform(sqrt((l1[0] * l1[0]) + (l1[1] * l1[1]) + (l1[2] * l1[2])));  // norm and
