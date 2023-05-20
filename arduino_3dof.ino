@@ -22,6 +22,7 @@ float phi0 = 25.84;
 float d = 50.0;
 float e = 70.0;
 float z0 = 32.0;
+float k;
 
 typedef enum _com_mode
 {
