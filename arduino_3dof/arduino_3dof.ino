@@ -301,9 +301,9 @@ void loop() {
     }
 
     // 파이썬으로 부터 데이터 받음.
-    theta = CMDdataDEG[0]; //roll
-    phi = CMDdataDEG[1]; //pitch
-    z_set = CMDdataDEG[2]; //z-axis
+    theta = CMDdataDEG[0].toInt(); //roll
+    phi = CMDdataDEG[1].toInt(); //pitch
+    z_set = CMDdataDEG[2].toInt(); //z-axis
     // 역기구학 계산
     create_l_vectors();                                                                // create the end-effector vectors
     L1_a = step_transform(sqrt((l1[0] * l1[0]) + (l1[1] * l1[1]) + (l1[2] * l1[2])));  // norm and
