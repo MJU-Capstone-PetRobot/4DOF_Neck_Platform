@@ -4,5 +4,4 @@
 
 ## dependencies
 
-https://github.com/maehem/ESP32-Dynamixel
-
+https://github.com/likhogub/AX-12A-servo-library/tree/master
