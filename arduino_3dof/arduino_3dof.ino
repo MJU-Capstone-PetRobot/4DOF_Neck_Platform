@@ -109,7 +109,7 @@ void setup() {
   p3[0] = -k * sin(30 * deg2rad);  // same for third effector pivot point
   p3[1] = -k * cos(30 * deg2rad);
   p3[2] = 0.0;
-  Serial1.begin(115200);  //tx 1
+  Serial1.begin(115200,SERIAL_8N1, 2, 1);  //tx 1
 
   // put your setup code here, to run once:
   Serial.begin(115200);  // 통신 속도
