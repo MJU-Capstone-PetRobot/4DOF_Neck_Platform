@@ -5,6 +5,7 @@
 #define ID3            3
 
 #include <AX12A.h>
+#include <math.h>
 
 String RCVdata;
 String CMDdataDEG[3];
@@ -13,13 +14,13 @@ float deg2rad = M_PI / 180.0;
 float rad2deg = 180.0 / M_PI;
 float b1[3], b2[3], b3[3], p1[3], p2[3], p3[3];
 float l1[3], l2[3], l3[3];
-float L1_a, L2_a, L3_a;
+int L1_a, L2_a, L3_a;
 float bRp0[3], bRp1[3], bRp2[3], T[3];
 float z_set = 105;
 float angle, theta, phi;
 float phi0 = 30;
-float d = 50.0;
-float e = 70.0;
+float d = 25.0;
+float e = 60.0;
 float z0 = 26.0; //모터 좌표
 float k; //모터 좌표 반지름
 int angle_step;
@@ -64,8 +65,8 @@ void create_l_vectors() {
 }
 //length == 높이
 int step_transform(float length) {
-  if (length > 100.0) {
-    length = 100.0;  //최대길이
+  if (length > 80.0) {
+    length = 80.0;  //최대길이
   }
   if (length < 50.0) {
     length = 50.0;  //최소길이
@@ -108,10 +109,11 @@ void setup() {
   p3[0] = -k * sin(30 * deg2rad);  // same for third effector pivot point
   p3[1] = -k * cos(30 * deg2rad);
   p3[2] = 0.0;
+  Serial1.begin(115200);  //tx 1
 
   // put your setup code here, to run once:
   Serial.begin(115200);  // 통신 속도
-  ax12a.begin(BaudRate, DirectionPin, &Serial);
+  ax12a.begin(BaudRate, DirectionPin, &Serial1);
   delay(1000);
 }
 
@@ -163,7 +165,8 @@ void loop() {
 
 
     RCVdata = "";
-
+    
+    Serial.printf("%d ,%d, %d", L1_a, L2_a, L3_a);
 
     ax12a.move(ID1, L1_a);
     ax12a.move(ID1, L2_a);
